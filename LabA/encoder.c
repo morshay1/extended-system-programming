@@ -1,9 +1,11 @@
 #include <stdio.h>
 
-int main()
+int main(int argc, char *argv[])
 {
-    printf("Enter something: ");
-    fgets(something, sizeof(something), stdin);
-    printf("%s", something);
+    
+    int c;
+    while ((c = fgetc(stdin)) != '\n') {
+        printf("Read character: %c\n", c);
+    }
     return 0;
 }
