@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
     FILE *outFile = stdout;
 
     for (int i = 0; i < argc; i++) {
-        // debug mode
+        // Debug mode
         if (debug == 1){
             fprintf(stderr, "debug: argument %d: %s\n", i, argv[i]);
         }
