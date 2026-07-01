@@ -1,5 +1,3 @@
-/* $Id: count-words.c 858 2010-02-21 10:26:22Z tolpin $ */
-
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -7,9 +5,14 @@
 /* return string "word" if the count is 1 or "words" otherwise */
 char *words(int count)
 {
-  char *words = "words";
+  char *words = malloc(strlen("words") + 1);
+  if(words == NULL){
+    fprintf(stderr, "Memory allocation failed!\n");
+    return NULL;
+  }
+  strcpy(words, "words");
   if (count == 1)
-    	words[strlen(words)-1] = '\0';
+    words[strlen(words)-1] = '\0';
   
   return words;
 }
@@ -22,8 +25,10 @@ int print_word_count(char **argv)
   while (*(a++))
     ++count;
   char *wordss = words(count);
+  if (wordss == NULL)
+    return -1;
   printf("The sentence contains %d %s.\n", count, wordss);
-  
+  free(wordss);
   return count;
 }
 
